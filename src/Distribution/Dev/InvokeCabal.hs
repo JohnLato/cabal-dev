@@ -168,8 +168,8 @@ needsGHC68Compat = cabalVersion < Version [1, 9] []
 
 ghcPkgCompatProgram :: Program
 ghcPkgCompatProgram  = p { programFindLocation =
-                           \v -> do
-                             res <- programFindLocation p v
+                           \v sp -> do
+                             res <- programFindLocation p v sp
                              case res of
                                Nothing -> return Nothing
                                Just loc -> Just `fmap` ensureAbsolute loc
